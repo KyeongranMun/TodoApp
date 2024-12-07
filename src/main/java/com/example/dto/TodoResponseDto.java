@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 /**
- * 클라이언트가 필요로 하는 정보를 전달, API 응답을 정의
+ * 클라이언트가 필요로 하는 정보를 전달, API 응답을 정의합니다.
  */
 @Getter
 public class TodoResponseDto {
