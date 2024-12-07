@@ -1,5 +1,6 @@
 package com.example.repository;
 
+import com.example.dto.TodoResponseDto;
 import com.example.entity.Todo;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -41,13 +42,16 @@ public class JdbcTodoRepository implements TodoRepository {
     }
 
     @Override
-    public List<Todo> findAllTodos() {
-        return List.of();
+    public List<TodoResponseDto> findAllTodos() {
+        String sql = "SELECT * FROM todo_table";
+        List<Todo> allTodos = jdbcTemplate.query(sql, todoRowMapper);
+        return allTodos.stream().map(TodoResponseDto::new).toList();
     }
 
     @Override
     public Todo findTodoById(Long id) {
-        return null;
+        String sql = "SELECT * FROM todo_table WHERE id = ?";
+        return jdbcTemplate.query(sql, todoRowMapper, id).stream().findAny().orElse(null);
     }
 
     @Override

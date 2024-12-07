@@ -6,7 +6,10 @@ import com.example.dto.TodoResponseDto;
 import com.example.dto.UpdateRequestDto;
 import com.example.entity.Todo;
 import com.example.repository.TodoRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
 /**
@@ -31,12 +34,16 @@ public class TodoServiceImpl implements TodoService{
     // 전체 일정 조회
     @Override
     public List<TodoResponseDto> findAllTodos() {
-        return List.of();
+        return todoRepository.findAllTodos();
     }
     // 일정 단건 조회
     @Override
     public TodoResponseDto findTodoById(Long id) {
-        return null;
+        Todo todo = todoRepository.findTodoById(id);
+        if (todo == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "일정을 찾을 수 없습니다.");
+        }
+        return new TodoResponseDto(todo);
     }
     // 일정 생성
     @Override

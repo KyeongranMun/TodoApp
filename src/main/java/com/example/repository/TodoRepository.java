@@ -1,5 +1,6 @@
 package com.example.repository;
 
+import com.example.dto.TodoResponseDto;
 import com.example.entity.Todo;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface TodoRepository {
     Todo saveTodo(Todo todo);
-    List<Todo> findAllTodos();
+    List<TodoResponseDto> findAllTodos();
     Todo findTodoById(Long id);
     void updateTodo(Todo todo);
     void deleteTodo(Long id);
