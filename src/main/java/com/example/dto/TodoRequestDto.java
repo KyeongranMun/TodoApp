@@ -9,7 +9,7 @@ import lombok.Getter;
  */
 @Getter
 public class TodoRequestDto {
-    private String task;
-    private String author;
-    private String pw;
+    private String requestTask;
+    private String requestAuthor;
+    private String requestPw;
 }
