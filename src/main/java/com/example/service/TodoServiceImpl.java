@@ -2,6 +2,8 @@ package com.example.service;
 
 import com.example.dto.TodoRequestDto;
 import com.example.dto.TodoResponseDto;
+import com.example.entity.Todo;
+import com.example.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -10,11 +12,19 @@ import java.util.List;
  */
 @Service
 public class TodoServiceImpl implements TodoService{
+    private final TodoRepository todoRepository;
+
+    public TodoServiceImpl(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
     // 일정 생성
     @Override
     public TodoResponseDto createTodo(TodoRequestDto requestDto) {
-        return null;
+        Todo todo = new Todo(requestDto.getRequestTask(), requestDto.getRequestAuthor(),requestDto.getRequestPw());
+        Todo saveTodo = todoRepository.saveTodo(todo);
+        return new TodoResponseDto(saveTodo);
     }
+
     // 전체 일정 조회
     @Override
     public List<TodoResponseDto> findAllTodos() {
