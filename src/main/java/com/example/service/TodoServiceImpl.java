@@ -65,6 +65,13 @@ public class TodoServiceImpl implements TodoService{
     // 일정 삭제
     @Override
     public void deleteTodo(Long id, DeleteRequestDto deleteRequestDto) {
-
+        Todo todo = todoRepository.findTodoById(id);
+        if (todo == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, " 일정을 찾을 수 없습니다.");
+        }
+        if (!deleteRequestDto.getPw().equals(todo.getPw())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다.");
+        }
+        todoRepository.deleteTodo(id);
     }
 }

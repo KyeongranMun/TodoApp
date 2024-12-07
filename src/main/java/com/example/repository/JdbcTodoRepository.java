@@ -65,6 +65,8 @@ public class JdbcTodoRepository implements TodoRepository {
 
     @Override
     public void deleteTodo(Long id) {
+        String sql = "DELETE FROM todo_table WHERE id = ?";
+        jdbcTemplate.update(sql, id);
 
     }
 }
