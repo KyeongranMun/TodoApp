@@ -2,26 +2,28 @@ package com.example.dto;
 
 import com.example.entity.Todo;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 /**
  * 클라이언트가 필요로 하는 정보를 전달, API 응답을 정의합니다.
  */
+@Setter
 @Getter
 public class TodoResponseDto {
-    private Long responseId;
-    private String responseTask;
-    private String responseAuthor;
+    private Long id;
+    private String task;
+    private String author;
 
-    private LocalDateTime responCreateDate;
-    private LocalDateTime responModifiedDate;
+    private LocalDateTime createDate;
+    private LocalDateTime modifiedDate;
 
     public TodoResponseDto(Todo todo) {
-        responseId = todo.getId();
-        responseTask = todo.getTask();
-        responseAuthor = todo.getAuthor();
-        responCreateDate = todo.getCreateDate();
-        responModifiedDate = todo.getModifiedDate();
+        id = todo.getId();
+        task = todo.getTask();
+        author = todo.getAuthor();
+        createDate = todo.getCreateDate();
+        modifiedDate = todo.getModifiedDate();
     }
 }

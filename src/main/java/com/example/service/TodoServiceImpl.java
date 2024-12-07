@@ -1,7 +1,9 @@
 package com.example.service;
 
+import com.example.dto.DeleteRequestDto;
 import com.example.dto.TodoRequestDto;
 import com.example.dto.TodoResponseDto;
+import com.example.dto.UpdateRequestDto;
 import com.example.entity.Todo;
 import com.example.repository.TodoRepository;
 import org.springframework.stereotype.Service;
@@ -20,8 +22,9 @@ public class TodoServiceImpl implements TodoService{
     // 일정 생성
     @Override
     public TodoResponseDto createTodo(TodoRequestDto requestDto) {
-        Todo todo = new Todo(requestDto.getRequestTask(), requestDto.getRequestAuthor(),requestDto.getRequestPw());
+        Todo todo = new Todo(requestDto.getTask(), requestDto.getAuthor(),requestDto.getPw());
         Todo saveTodo = todoRepository.saveTodo(todo);
+
         return new TodoResponseDto(saveTodo);
     }
 
@@ -37,12 +40,12 @@ public class TodoServiceImpl implements TodoService{
     }
     // 일정 생성
     @Override
-    public TodoResponseDto updateTask(Long id, String task, String pw) {
+    public TodoResponseDto updateTask(Long id, UpdateRequestDto updateRequestDto) {
         return null;
     }
     // 일정 삭제
     @Override
-    public void deleteTodo(Long id, String pw) {
+    public void deleteTodo(Long id, DeleteRequestDto deleteRequestDto) {
 
     }
 }
