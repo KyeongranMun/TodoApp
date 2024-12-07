@@ -9,9 +9,9 @@ import java.util.List;
  * 모든 서비스 기능은 해당 인터페이스에 의해 규정되며 이를 구현한 클래스는 이 규칙을 따라야 합니다.
  */
 public interface TodoService {
-    TodoResponseDto createTodo(TodoRequestDto requestDto); //
+    TodoResponseDto createTodo(TodoRequestDto requestDto); // TodoRequest타입의 매개변수 requestDto를 createTodo에 담아 -> 메서드 내에서 처리 -> 나온 결과를 TodoResponseDto 형태로 반환
     List<TodoResponseDto> findAllTodos();
-    TodoResponseDto findTodoById(Long id);
-    TodoResponseDto updateTask(Long id, String task, String pw);
-    void deleteTodo(Long id, String pw);
+    TodoResponseDto findTodoById(Long requestId);
+    TodoResponseDto updateTask(Long requestId, String requestTask, String requestPw);
+    void deleteTodo(Long requestId, String requestPw);
 }
