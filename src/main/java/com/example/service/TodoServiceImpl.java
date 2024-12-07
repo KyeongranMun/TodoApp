@@ -45,10 +45,22 @@ public class TodoServiceImpl implements TodoService{
         }
         return new TodoResponseDto(todo);
     }
-    // 일정 생성
+    // 일정 수정
     @Override
     public TodoResponseDto updateTask(Long id, UpdateRequestDto updateRequestDto) {
-        return null;
+        Todo todo = todoRepository.findTodoById(id);
+        if (todo == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "일정을 찾을 수 없습니다.");
+        }
+        if (!updateRequestDto.getPw().equals(todo.getPw())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다.");
+        }
+        if (updateRequestDto.getTask() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정할 내용이 빈 칸입니다. 내용을 작성해주세요");
+        }
+        todo.updateTask(updateRequestDto.getTask());
+        todoRepository.updateTodo(todo);
+        return new TodoResponseDto(todo);
     }
     // 일정 삭제
     @Override

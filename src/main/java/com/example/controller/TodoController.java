@@ -41,7 +41,7 @@ public class TodoController {
 
     // 일정 내용 수정 ( 비밀번호 검증 필수, task != null )
     @PatchMapping("/{id}")
-    public TodoResponseDto updateTask(@PathVariable Long id, @RequestBody UpdateRequestDto updateRequestDto) {
+    public TodoResponseDto updateTask(@PathVariable Long id ,@RequestBody UpdateRequestDto updateRequestDto) {
         return todoService.updateTask(id, updateRequestDto);
     }
 

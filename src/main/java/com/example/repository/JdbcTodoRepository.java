@@ -22,8 +22,8 @@ public class JdbcTodoRepository implements TodoRepository {
 
     private final RowMapper<Todo> todoRowMapper = (rs, rowNum) -> new Todo(
             rs.getLong("id"),
-            rs.getString("task"),
             rs.getString("author"),
+            rs.getString("task"),
             rs.getString("pw"),
             rs.getTimestamp("createDate").toLocalDateTime(),
             rs.getTimestamp("modifiedDate").toLocalDateTime()
@@ -33,7 +33,6 @@ public class JdbcTodoRepository implements TodoRepository {
     @Override
     public Todo saveTodo(Todo todo) {
         String sql = "INSERT INTO todo_table(task, author, pw, createDate, modifiedDate) VALUES (?, ?, ?, ?, ?)";
-        System.out.println("POST");
         jdbcTemplate.update(sql, todo.getTask(), todo.getAuthor(), todo.getPw(),
                 Timestamp.valueOf(todo.getCreateDate()), Timestamp.valueOf(todo.getModifiedDate()));
 
@@ -41,6 +40,7 @@ public class JdbcTodoRepository implements TodoRepository {
         return todo;
     }
 
+    // 전체 일정 목록 반환
     @Override
     public List<TodoResponseDto> findAllTodos() {
         String sql = "SELECT * FROM todo_table";
@@ -48,14 +48,18 @@ public class JdbcTodoRepository implements TodoRepository {
         return allTodos.stream().map(TodoResponseDto::new).toList();
     }
 
+    // DB에서 일정 단건 조회
     @Override
     public Todo findTodoById(Long id) {
         String sql = "SELECT * FROM todo_table WHERE id = ?";
         return jdbcTemplate.query(sql, todoRowMapper, id).stream().findAny().orElse(null);
     }
 
+    // 일정 내용 수정
     @Override
     public void updateTodo(Todo todo) {
+        String sql = "UPDATE todo_table SET task = ?, modifiedDate = ? WHERE id =?";
+        jdbcTemplate.update(sql,todo.getTask(), Timestamp.valueOf(todo.getModifiedDate()), todo.getId());
 
     }
 
