@@ -1,12 +1,11 @@
 package com.example.controller;
 
-import com.example.dto.DeleteRequestDto;
-import com.example.dto.TodoRequestDto;
-import com.example.dto.TodoResponseDto;
-import com.example.dto.UpdateRequestDto;
+import com.example.dto.*;
 import com.example.service.TodoService;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -37,6 +36,14 @@ public class TodoController {
     @GetMapping("/{id}")
     public TodoResponseDto findTodoById(@PathVariable Long id) {
         return todoService.findTodoById(id);
+    }
+
+    // 일정 조회 - 날짜로 검색
+    @GetMapping("/date{createDate}")
+    public List<TodoResponseDto> finTodoByDate(@PathVariable String createDate) {
+        // 날짜 파라미터 LocalDate로 변환
+        LocalDate localDate = LocalDate.parse(createDate);
+        return todoService.findTodoByDate(localDate);
     }
 
     // 일정 내용 수정 ( 비밀번호 검증 필수, task != null )

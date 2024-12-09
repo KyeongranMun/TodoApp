@@ -3,6 +3,8 @@ package com.example.repository;
 import com.example.dto.TodoResponseDto;
 import com.example.entity.Todo;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -12,6 +14,7 @@ public interface TodoRepository {
     Todo saveTodo(Todo todo);
     List<TodoResponseDto> findAllTodos();
     Todo findTodoById(Long id);
+    List<Todo> findTodoByDate(LocalDate createDate);
     void updateTodo(Todo todo);
     void deleteTodo(Long id);
 }

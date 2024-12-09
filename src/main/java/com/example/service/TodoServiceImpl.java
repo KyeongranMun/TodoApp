@@ -1,15 +1,14 @@
 package com.example.service;
 
-import com.example.dto.DeleteRequestDto;
-import com.example.dto.TodoRequestDto;
-import com.example.dto.TodoResponseDto;
-import com.example.dto.UpdateRequestDto;
+import com.example.dto.*;
 import com.example.entity.Todo;
 import com.example.repository.TodoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -45,6 +44,14 @@ public class TodoServiceImpl implements TodoService{
         }
         return new TodoResponseDto(todo);
     }
+
+    // 일정 검색 - 날짜로 검색
+    @Override
+    public List<TodoResponseDto> findTodoByDate(LocalDate requestCreateDate) {
+        List<Todo> allTodos = todoRepository.findTodoByDate(requestCreateDate);
+        return allTodos.stream().map(TodoResponseDto::new).toList();
+    }
+
     // 일정 수정
     @Override
     public TodoResponseDto updateTask(Long id, UpdateRequestDto updateRequestDto) {

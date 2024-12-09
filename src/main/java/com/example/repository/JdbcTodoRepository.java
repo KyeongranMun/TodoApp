@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.Timestamp;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -53,6 +55,13 @@ public class JdbcTodoRepository implements TodoRepository {
     public Todo findTodoById(Long id) {
         String sql = "SELECT * FROM todo_table WHERE id = ?";
         return jdbcTemplate.query(sql, todoRowMapper, id).stream().findAny().orElse(null);
+    }
+
+    // 날짜를 기준으로 일정 찾기
+    @Override
+    public List<Todo> findTodoByDate(LocalDate createDate) {
+        String sql = "SELECT * FROM todo_table WHERE DATE(createDate) = ?";
+        return jdbcTemplate.query(sql, todoRowMapper, createDate);
     }
 
     // 일정 내용 수정

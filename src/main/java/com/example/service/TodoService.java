@@ -1,10 +1,9 @@
 package com.example.service;
 
-import com.example.dto.DeleteRequestDto;
-import com.example.dto.TodoRequestDto;
-import com.example.dto.TodoResponseDto;
-import com.example.dto.UpdateRequestDto;
+import com.example.dto.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -15,6 +14,7 @@ public interface TodoService {
     TodoResponseDto createTodo(TodoRequestDto requestDto); // TodoRequest타입의 매개변수 requestDto를 createTodo에 담아 -> 메서드 내에서 처리 -> 나온 결과를 TodoResponseDto 형태로 반환
     List<TodoResponseDto> findAllTodos();
     TodoResponseDto findTodoById(Long requestId);
+    List<TodoResponseDto> findTodoByDate(LocalDate requestCreateDate);
     TodoResponseDto updateTask(Long requestId, UpdateRequestDto updateRequestDto);
     void deleteTodo(Long requestId, DeleteRequestDto deleteRequestDto);
 }
