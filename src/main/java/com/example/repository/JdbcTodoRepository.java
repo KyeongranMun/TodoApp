@@ -18,7 +18,7 @@ import java.util.List;
  * - JDBC Template을 사용해 데이터베이스와 상호 작용 합니다.
  * - 일정 데이터를 데이터베이스에 저장, 조회, 수정, 삭제하는 기능을 제공합니다.
  */
-@Repository
+@Repository // 레포지토리라는 것을 알리는 애너테이션
 public class JdbcTodoRepository implements TodoRepository {
     private final JdbcTemplate jdbcTemplate;
 
