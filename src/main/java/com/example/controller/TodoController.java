@@ -27,22 +27,18 @@ public class TodoController {
 
     // 전체 일정 조회
     @GetMapping
-    public List<TodoResponseDto> findAllTodos() {
-        return todoService.findAllTodos();
+    public List<TodoResponseDto> findAllTodos(@RequestParam(required = false) String date) {
+        if (date == null) {
+            return todoService.findAllTodos();
+        }
+        LocalDate localDate = LocalDate.parse(date);
+        return todoService.findTodoByDate(localDate);
     }
 
     // 일정 단건 조회
     @GetMapping("/{id}")
     public TodoResponseDto findTodoById(@PathVariable Long id) {
         return todoService.findTodoById(id);
-    }
-
-    // 일정 조회 - 날짜로 검색
-    @GetMapping("/date{createDate}")
-    public List<TodoResponseDto> finTodoByDate(@PathVariable String createDate) {
-        // 날짜 파라미터 LocalDate로 변환
-        LocalDate localDate = LocalDate.parse(createDate);
-        return todoService.findTodoByDate(localDate);
     }
 
     // 일정 내용 수정 ( 비밀번호 검증 필수, task != null )
