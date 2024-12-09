@@ -2,8 +2,6 @@ package com.example.dto;
 
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 /**
  * TodoRequestDto 클래스
  * - 클라이언트에서 서버로 전송되는 요청 데이터를 담는 객체
