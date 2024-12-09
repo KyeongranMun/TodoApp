@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
  * - Todo 엔티티 객체를 기반으로 필요한 데이터를 추출해 응답 DTO로 변환합니다.
  */
 @Setter // 모든 필드에 대한 Setter 메서드 자동 생성
-@Getter // 모든 필드에 대한 Getter 메서드 자동 생성
 public class TodoResponseDto {
     private Long id;
     private String task;
