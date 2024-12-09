@@ -43,10 +43,10 @@
 
 | function | Method | URL | Request Parameters | Response | Description |
 | ------ | --- | --- | --- | ---| --- | 
-| 일정 생성 | POST | /api/todos | task, author, pw | id, task, author, createDate, modifiedDate | 새로운 일정 생성 |
-| 전체 일정 조회 | GET | /api/todos | task, author | id, task, author, createDate, modifiedDate | 모든 일정을 목록으로 조회 | 
-| 일정 단건 조회 | GET | /api/todos/{id} | id, task, author | id, task, author, createDate, modifiedDate | 특정 ID의 일정 정보 조회 |
-| 일정 날짜로 조회  | GET | /api/todos?date | task, author, date | id, task, author, createDate, modifiedDate | 특정 날짜의 일정 정보 조회 |
+| 일정 생성 | POST | /api/todos | task, author, pw, createDate | id, task, author, createDate, modifiedDate | 새로운 일정 생성 |
+| 전체 일정 조회 | GET | /api/todos | date | id, task, author, createDate, modifiedDate | 모든 일정을 목록으로 조회 | 
+| 일정 단건 조회 | GET | /api/todos/{id} | id | id, task, author, createDate, modifiedDate | 특정 ID의 일정 정보 조회 |
+| 일정 날짜로 조회  | GET | /api/todos?date | id, task, pw, date | id, task, author, createDate, modifiedDate | 특정 날짜의 일정 정보 조회 |
 | 일정 내용 수정 | PATCH | /api/todos/{id} | task, pw | id, task, author, createDate, modifiedDate | 특정 ID의 일정 내용만 수정 |
 | 일정 삭제 | DELETE | /api/todos/{id} | pw | | 특정 ID의 일정 삭제
 
