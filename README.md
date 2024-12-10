@@ -1,9 +1,14 @@
 기술 스택:
 
 Java 17
+
 Spring Boot 3.4.0
+
 JdbcTemplate
+
 MySQL 8.0
+
+<br>
 
 ## 📜 목차   
 
