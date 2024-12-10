@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  */
 
 @Setter // 모든 필드에 대한 Setter 메서드 자동 생성
-@Getter // 모든 필터에 대한 Getter 메서드 자동 생성
+@Getter // 모든 필드에 대한 Getter 메서드 자동 생성
 public class TodoResponseDto {
     private Long id;
     private String task;
