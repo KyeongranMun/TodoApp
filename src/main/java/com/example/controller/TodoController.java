@@ -37,8 +37,8 @@ public class TodoController {
      *
      */
     @GetMapping
-    public List<TodoResponseDto> findAllTodos(@RequestParam(required = false) LocalDate createDate, String author) {
-        return todoService.findAllTodos(createDate, author);
+    public List<TodoResponseDto> findAllTodos(@RequestParam(required = false) LocalDate modifiedDate, String author) {
+        return todoService.findAllTodos(modifiedDate, author);
     }
 
     // 단일 일정 조회 처리

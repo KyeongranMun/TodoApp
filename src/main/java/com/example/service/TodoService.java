@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface TodoService {
     TodoResponseDto createTodo(TodoRequestDto requestDto);
-    List<TodoResponseDto> findAllTodos(LocalDate createDate, String author);
+    List<TodoResponseDto> findAllTodos(LocalDate modifiedDate, String author);
     TodoResponseDto findTodoById(Long requestId);
     TodoResponseDto updateTask(Long requestId, UpdateRequestDto updateRequestDto);
     void deleteTodo(Long requestId, DeleteRequestDto deleteRequestDto);

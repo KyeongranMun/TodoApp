@@ -31,8 +31,8 @@ public class TodoServiceImpl implements TodoService{
     }
 
     @Override
-    public List<TodoResponseDto> findAllTodos(LocalDate createDate, String author) {
-        return todoRepository.findAllTodos(createDate,author);
+    public List<TodoResponseDto> findAllTodos(LocalDate modifiedDate, String author) {
+        return todoRepository.findAllTodos(modifiedDate,author);
     }
 
     @Override
