@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 /**
- * Todo Entity 클래스
+ * TodoEntity 클래스
  * - 데이터 베이스 테이블과 일대일 매핑되는 데이터 모델
  */
 @Getter

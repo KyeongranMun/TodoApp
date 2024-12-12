@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
-
 import java.util.List;
 
 /**
@@ -32,8 +31,8 @@ public class TodoServiceImpl implements TodoService{
     }
 
     @Override
-    public List<TodoResponseDto> findAllTodos() {
-        return todoRepository.findAllTodos();
+    public List<TodoResponseDto> findAllTodos(LocalDate createDate, String author) {
+        return todoRepository.findAllTodos(createDate,author);
     }
 
     @Override
@@ -43,12 +42,6 @@ public class TodoServiceImpl implements TodoService{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "일정을 찾을 수 없습니다.");
         }
         return new TodoResponseDto(todo);
-    }
-
-    @Override
-    public List<TodoResponseDto> findTodoByDate(LocalDate requestCreateDate) {
-        List<Todo> allTodos = todoRepository.findTodoByDate(requestCreateDate);
-        return allTodos.stream().map(TodoResponseDto::new).toList();
     }
 
     @Override

@@ -14,9 +14,8 @@ import java.util.List;
 public interface TodoRepository {
 
     Todo saveTodo(Todo todo);
-    List<TodoResponseDto> findAllTodos();
+    List<TodoResponseDto> findAllTodos(LocalDate createDate, String author);
     Todo findTodoById(Long id);
-    List<Todo> findTodoByDate(LocalDate createDate);
     void updateTodo(Todo todo);
     void deleteTodo(Long id);
 }

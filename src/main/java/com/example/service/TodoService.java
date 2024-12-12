@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.dto.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -11,9 +12,8 @@ import java.util.List;
  */
 public interface TodoService {
     TodoResponseDto createTodo(TodoRequestDto requestDto);
-    List<TodoResponseDto> findAllTodos();
+    List<TodoResponseDto> findAllTodos(LocalDate createDate, String author);
     TodoResponseDto findTodoById(Long requestId);
-    List<TodoResponseDto> findTodoByDate(LocalDate requestCreateDate);
     TodoResponseDto updateTask(Long requestId, UpdateRequestDto updateRequestDto);
     void deleteTodo(Long requestId, DeleteRequestDto deleteRequestDto);
 }
