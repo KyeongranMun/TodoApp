@@ -48,11 +48,11 @@ public class JdbcTodoRepository implements TodoRepository {
     // 전체 일정 조회
     @Override
     public List<TodoResponseDto> findAllTodos(LocalDate modifiedDate, String author) {
-        String sql = "SELECT * FROM todo_table WHERE TRUE"; // 전체 일정 목록을 조회하는 sql
-        List<Object> params = new ArrayList<>(); // 리스트 params 초기화 동적인 데이터 관리를 위해 리스트 사용
+        String sql = "SELECT * FROM todo_table WHERE TRUE";
+        List<Object> params = new ArrayList<>();
 
-        if (modifiedDate != null) { // 값이 있을 때
-            sql += " AND DATE(modifiedDate) = ?"; // AND를 바로 쓸 수 있는 이유는 WHERE TRUE 때문
+        if (modifiedDate != null) {
+            sql += " AND DATE(modifiedDate) = ?";
             params.add(modifiedDate);
         }
         if (author != null) {
@@ -60,8 +60,8 @@ public class JdbcTodoRepository implements TodoRepository {
             params.add(author);
         }
         sql += " ORDER BY modifiedDate desc";
-        List<Todo> allTodos = jdbcTemplate.query(sql, todoRowMapper, params.toArray()); // 데이터베이스에서 조회된 결과를 RowMapper를 통해 List<Todo> 형태로 매핑
-        return allTodos.stream().map(TodoResponseDto::new).toList(); // 매핑된 리스트를 순회하며 각 항목을 TodoResponseDto 형태로 변환한 뒤 최종적으로 리스트로 반환
+        List<Todo> allTodos = jdbcTemplate.query(sql, todoRowMapper, params.toArray());
+        return allTodos.stream().map(TodoResponseDto::new).toList();
     }
 
     //일정 단건 조회
